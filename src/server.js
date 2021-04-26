@@ -32,6 +32,25 @@ router.get('/me', (req, res) => {
 })
 app.use('/api', router)
 
+// minimize routes by verbs
+const routes = [
+  'get /disease',
+  'get /disease/:id',
+  'post /disease',
+  'put /disease/:id',
+  'delete /disease/:id'
+]
+router
+  .route('/cat')
+  .get()
+  .post()
+
+router
+  .route('/cat/:id')
+  .put()
+  .delete()
+
+app.use('/api', router)
 app.get('/', (req, res) => {
   res.send({ message: 'Hello' })
 })
