@@ -4,7 +4,7 @@ import morgan from 'morgan'
 import config from './config'
 import cors from 'cors'
 import { connect } from './utils/db'
-
+import itemRouter from './resources/item/item.router'
 export const app = express()
 const router = express.Router()
 
@@ -71,6 +71,7 @@ app.post('/data', (req, res) => {
 })
 
 app.use(morgan('dev'))
+app.use('/api/item', itemRouter)
 
 export const start = async () => {
   try {
