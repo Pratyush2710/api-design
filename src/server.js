@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 
 export const app = express()
+const router = express.Router()
 
 app.disable('x-powered-by')
 
@@ -24,6 +25,12 @@ app.use(log)
 // app.get('/', log, (req, res) => {
 // us multiple middlewares
 // app.get('/',[], (req, res) => {
+
+// subrouting
+router.get('/me', (req, res) => {
+  res.send({ subRouter: true })
+})
+app.use('/api', router)
 
 app.get('/', (req, res) => {
   res.send({ message: 'Hello' })
