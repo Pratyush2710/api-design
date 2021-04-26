@@ -12,6 +12,19 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev')) // logger
 
+const log = (req, res, next) => {
+  console.log('logging')
+  next() // order to run next middleware
+}
+// methods to use middleware
+// ---- set globally
+app.use(log)
+
+// use specific to method
+// app.get('/', log, (req, res) => {
+// us multiple middlewares
+// app.get('/',[], (req, res) => {
+
 app.get('/', (req, res) => {
   res.send({ message: 'Hello' })
 })
