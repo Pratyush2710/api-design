@@ -1,7 +1,9 @@
 import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
+import config from './config'
 import cors from 'cors'
+import { connect } from './utils/db'
 
 export const app = express()
 const router = express.Router()
@@ -68,8 +70,15 @@ app.post('/data', (req, res) => {
   res.send(req.body)
 })
 
-export const start = () => {
-  app.listen(3000, () => {
-    console.log('server is on 3000')
-  })
+app.use(morgan('dev'))
+
+export const start = async () => {
+  try {
+    await connect()
+    app.listen(config.port, () => {
+      console.log(`REST API on http://localhost:${config.port}/api`)
+    })
+  } catch (e) {
+    console.error(e)
+  }
 }
