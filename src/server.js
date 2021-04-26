@@ -16,7 +16,6 @@ app.disable('x-powered-by')
 app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(morgan('dev')) // logger
 
 const log = (req, res, next) => {
   console.log('logging')
@@ -73,7 +72,7 @@ app.post('/data', (req, res) => {
   res.send(req.body)
 })
 
-app.use(morgan('dev'))
+app.use(morgan('dev')) // logger
 app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
 app.use('/api/list', listRouter)

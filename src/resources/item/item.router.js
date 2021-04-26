@@ -6,7 +6,7 @@ const router = Router()
 // /api/item
 router
   .route('/')
-  .get(controllers.getMany)
+  .get(controllers.getOne)
   .post(controllers.createOne)
 
 // /api/item/:id
