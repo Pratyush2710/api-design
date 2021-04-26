@@ -18,6 +18,21 @@ const run = async () => {
   // Note:- mongoose.find return fake promises so .exec() change to real promise
   // to avoid errors, also we can perform operation
   // like .where, .limit,.all
+
+  // update
+  const updated = await Item.findByIdAndUpdate(
+    item._id,
+    { name: 'Pratyush Garg' },
+    { new: true }
+    // new:true return updated object, otherwise previous object
+  ).exec()
+  console.log(updated)
+
+  // Remove
+  const removed = await Item.findByIdAndRemove(item._id).exec()
+  // new:true return updated object, otherwise previous object
+
+  console.log(removed)
 }
 run()
 // export default crudControllers(Item)

@@ -88,3 +88,9 @@ export const start = async () => {
     console.error(e)
   }
 }
+
+// MONGOOSE MODELS FOR CRUD
+// C - mode.create()m new model()
+// R - model.find(), model.findOne(), model.findById()
+// U -- model.update(), model.findByIdAndUpdate(), model.findOneAndUpdate()
+// D -- model.delete(), model.findByIdAndRemove(), model.findOneAndRemove()
