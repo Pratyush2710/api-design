@@ -19,6 +19,7 @@ const itemSchema = new mongoose.Schema(
     createdBy: {
       // relational database in mongodb
       type: mongoose.SchemaTypes.ObjectId,
+      // ref to collection i.e. models created
       ref: 'user',
       required: true
     },
@@ -30,4 +31,6 @@ const itemSchema = new mongoose.Schema(
   },
   { timestamps: true }
 )
+
+itemSchema.index({ list: 1, name: 1 }, { unique: true })
 export const Item = mongoose.model('item', itemSchema)
