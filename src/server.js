@@ -7,6 +7,7 @@ import { connect } from './utils/db'
 import userRouter from './resources/user/user.router'
 import itemRouter from './resources/item/item.router'
 import listRouter from './resources/list/list.router'
+import { protect, signin, signup } from './utils/auth'
 
 export const app = express()
 const router = express.Router()
@@ -73,6 +74,9 @@ app.post('/data', (req, res) => {
 })
 
 app.use(morgan('dev')) // logger
+app.use('/signup', signup)
+app.use('/signin', signin)
+app.use('/api', protect)
 app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
 app.use('/api/list', listRouter)
